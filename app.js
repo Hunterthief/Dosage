@@ -242,6 +242,15 @@ const ICONS = {
   chart: `
     <path d="M3 3v18h18" />
     <path d="M7 15l3-3 3 3 5-6" />
+  `,
+  compass: `
+    <circle cx="12" cy="12" r="9" />
+    <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+  `,
+  route: `
+    <circle cx="6" cy="19" r="3" />
+    <circle cx="18" cy="5" r="3" />
+    <path d="M9 19h6a3 3 0 0 0 3-3V8" />
   `
 };
 
@@ -262,11 +271,16 @@ const state = {
   role: localStorage.getItem("tab_role") || "",
   filter: "all",
   query: "",
-  openDetailId: null
+  openDetailId: null,
+  visited: JSON.parse(localStorage.getItem("tab_visited") || "[]")
 };
 
 function $(selector) {
   return document.querySelector(selector);
+}
+
+function $all(selector) {
+  return Array.from(document.querySelectorAll(selector));
 }
 
 document.addEventListener("DOMContentLoaded", init);
@@ -279,19 +293,51 @@ function init() {
     document.body.classList.add("locked");
   }
 
+  attachEvents();
+  updateProgress();
+  renderRoleIntro();
+  renderSpotlight();
+  render();
+}
+
+function attachEvents() {
   $("#searchInput").addEventListener("input", (e) => {
     state.query = e.target.value.toLowerCase().trim();
     render();
   });
 
-  document.querySelectorAll("#filters .chip").forEach((btn) => {
+  $all("#filters .chip").forEach((btn) => {
     btn.addEventListener("click", () => {
-      document
-        .querySelectorAll("#filters .chip")
-        .forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-      state.filter = btn.dataset.filter;
+      setActiveFilter(btn.dataset.filter);
       render();
+    });
+  });
+
+  $all(".leaf-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter || "all";
+      const query = btn.dataset.query || "";
+      setActiveFilter(filter);
+      state.query = query;
+      $("#searchInput").value = query;
+      render();
+      scrollTo("#grid");
+    });
+  });
+
+  $all("[data-journey]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const action = btn.dataset.journey;
+
+      if (action === "classification") {
+        scrollTo("#explorer");
+      } else if (action === "dossier") {
+        startRecommended();
+      } else if (action === "lens") {
+        resetRole();
+      } else if (action === "browse") {
+        focusGrid();
+      }
     });
   });
 
@@ -306,8 +352,13 @@ function init() {
       closeDetail();
     }
   });
+}
 
-  render();
+function setActiveFilter(filter) {
+  state.filter = filter;
+  $all("#filters .chip").forEach((b) => {
+    b.classList.toggle("is-active", b.dataset.filter === filter);
+  });
 }
 
 window.setRole = function setRole(role) {
@@ -316,6 +367,8 @@ window.setRole = function setRole(role) {
   $("#roleModal").classList.remove("is-open");
   document.body.classList.remove("locked");
   applyRole();
+  renderRoleIntro();
+  renderSpotlight();
   render();
 };
 
@@ -328,6 +381,9 @@ window.resetRole = function resetRole() {
   $("#roleModal").classList.add("is-open");
   document.body.classList.add("locked");
   closeDetail();
+  renderRoleIntro();
+  renderSpotlight();
+  render();
 };
 
 function applyRole() {
@@ -336,6 +392,110 @@ function applyRole() {
   badge.textContent =
     state.role === "patient" ? "Patient mode" : "Pharmacist mode";
   badge.className = `role-badge role-badge-${state.role}`;
+}
+
+function updateProgress() {
+  const el = $("#progressCount");
+  if (!el) return;
+  el.textContent = `${state.visited.length} of ${TABLETS.length} dossiers explored`;
+}
+
+function renderRoleIntro() {
+  const el = $("#roleIntro");
+  if (!el) return;
+
+  if (!state.role) {
+    el.innerHTML = `
+      <h3 class="intro-title">No mode selected yet</h3>
+      <p class="intro-text">
+        Choose patient or pharmacist mode to unlock a tailored exploration path.
+      </p>
+      <ul class="intro-list">
+        <li>${iconHTML("compass")} The site will reorganize the same content for your audience.</li>
+        <li>${iconHTML("route")} You can switch modes at any time from the header.</li>
+      </ul>
+    `;
+    return;
+  }
+
+  if (state.role === "patient") {
+    el.innerHTML = `
+      <h3 class="intro-title">Patient-centered exploration</h3>
+      <p class="intro-text">
+        You are viewing the project as a counseling and usability resource.
+        The emphasis is on safe administration, practical warnings, and clear explanation.
+      </p>
+      <ul class="intro-list">
+        <li>${iconHTML("shield")} Focus on how to use each tablet correctly.</li>
+        <li>${iconHTML("alert")} Pay attention to warnings and common mistakes.</li>
+        <li>${iconHTML("play")} Video placeholders are ready for patient-facing recordings.</li>
+      </ul>
+    `;
+  } else {
+    el.innerHTML = `
+      <h3 class="intro-title">Pharmacist / student exploration</h3>
+      <p class="intro-text">
+        You are viewing the project as a technical pharmaceutical dossier.
+        The emphasis is on classification, structure, manufacturing, excipients, and QC.
+      </p>
+      <ul class="intro-list">
+        <li>${iconHTML("layers")} Compare architecture across tablet types.</li>
+        <li>${iconHTML("settings")} Review manufacturing logic and process constraints.</li>
+        <li>${iconHTML("search")} Use filters to connect theory to representative examples.</li>
+      </ul>
+    `;
+  }
+}
+
+function recommendedId() {
+  if (state.role === "patient") {
+    return TABLETS.find((x) => x.id === "effervescent")
+      ? "effervescent"
+      : TABLETS[0]?.id;
+  }
+
+  return TABLETS.find((x) => x.id === "compressed")
+    ? "compressed"
+    : TABLETS[0]?.id;
+}
+
+function renderSpotlight() {
+  const id = recommendedId();
+  const item = TABLETS.find((x) => x.id === id);
+  const reasonEl = $("#spotlightReason");
+  const spotEl = $("#spotlight");
+
+  if (!item || !reasonEl || !spotEl) return;
+
+  if (state.role === "patient") {
+    reasonEl.textContent =
+      "For patient mode, a strong starting point is an effervescent tablet because it clearly demonstrates why administration instructions matter.";
+  } else if (state.role === "pharmacist") {
+    reasonEl.textContent =
+      "For pharmacist mode, the compressed tablet is the best anchor because it connects classification, manufacturing, excipients, and quality control.";
+  } else {
+    reasonEl.textContent =
+      "Select a mode above to get a more targeted recommendation, or start with this foundational example.";
+  }
+
+  spotEl.innerHTML = spotlightHTML(item);
+}
+
+function spotlightHTML(item) {
+  return `
+    <article class="spotlight-card" onclick="openDetail('${item.id}')">
+      <div>
+        ${mediaHTML(item, "large")}
+      </div>
+      <div class="spotlight-body">
+        <span class="spotlight-kicker">Start here</span>
+        <h3 class="spotlight-title">${item.name}</h3>
+        <p class="spotlight-reason"><strong>Representative:</strong> ${item.representative}</p>
+        <p class="spotlight-summary">${item.summary}</p>
+        <span class="spotlight-cta">Open full dossier →</span>
+      </div>
+    </article>
+  `;
 }
 
 function render() {
@@ -375,9 +535,13 @@ function render() {
   $("#resultCount").textContent = `${items.length} tablet type${
     items.length === 1 ? "" : "s"
   }`;
+
+  updateProgress();
 }
 
 function cardHTML(item) {
+  const visited = state.visited.includes(item.id);
+
   return `
     <article class="card" onclick="openDetail('${item.id}')">
       <div class="card-visual">
@@ -386,7 +550,7 @@ function cardHTML(item) {
       <div class="card-body">
         <div class="card-top">
           <span class="badge">${item.route}</span>
-          <span class="mini">${item.categories[0]}</span>
+          ${visited ? `<span class="visited-mark">Explored</span>` : `<span class="mini">${item.categories[0]}</span>`}
         </div>
         <h3>${item.name}</h3>
         <p class="rep">${item.representative}</p>
@@ -409,10 +573,13 @@ window.openDetail = function openDetail(id) {
   const item = TABLETS.find((x) => x.id === id);
   if (!item) return;
 
+  markVisited(id);
   state.openDetailId = id;
   renderDetail(item, state.role || "pharmacist");
   $("#detailModal").classList.add("is-open");
   document.body.classList.add("locked");
+  updateProgress();
+  render();
 };
 
 window.closeDetail = function closeDetail() {
@@ -430,8 +597,25 @@ window.setPerspective = function setPerspective(perspective) {
   }
 };
 
+window.startRecommended = function startRecommended() {
+  const id = recommendedId();
+  if (id) openDetail(id);
+};
+
+window.focusGrid = function focusGrid() {
+  scrollTo("#grid");
+};
+
+function markVisited(id) {
+  if (!state.visited.includes(id)) {
+    state.visited.push(id);
+    localStorage.setItem("tab_visited", JSON.stringify(state.visited));
+  }
+}
+
 function renderDetail(item, perspective) {
   const sections = perspective === "patient" ? item.patient : item.pharmacist;
+  const related = getRelated(item);
 
   const facts = [
     { label: "Route / use", value: item.route },
@@ -455,24 +639,13 @@ function renderDetail(item, perspective) {
         <div class="detail-badges">
           <span>${item.route}</span>
           <span>${item.preparation || "Tablet type"}</span>
-          <span>${perspective} view</span>
+          <span>${perspective} lens</span>
         </div>
         <h2>${item.name}</h2>
         <p class="detail-rep"><strong>Representative:</strong> ${item.representative}</p>
         <p>${item.summary}</p>
 
-        <div class="perspective-toggle">
-          <button class="${
-            perspective === "patient" ? "active" : ""
-          }" onclick="setPerspective('patient')">
-            Patient view
-          </button>
-          <button class="${
-            perspective === "pharmacist" ? "active" : ""
-          }" onclick="setPerspective('pharmacist')">
-            Pharmacist view
-          </button>
-        </div>
+        ${lensSwitchHTML(perspective)}
       </div>
     </div>
 
@@ -491,12 +664,59 @@ function renderDetail(item, perspective) {
           .join("")}
       </aside>
 
-      <div class="accordions">
-        ${sections
-          .map((section, index) => sectionHTML(section, index, perspective))
-          .join("")}
+      <div>
+        <div class="accordions">
+          ${sections
+            .map((section, index) => sectionHTML(section, index, perspective))
+            .join("")}
+        </div>
+
+        ${related.length ? relatedHTML(related) : ""}
       </div>
     </div>
+  `;
+}
+
+function lensSwitchHTML(perspective) {
+  return `
+    <div class="lens-switch">
+      <button class="lens-btn ${perspective === "patient" ? "active" : ""}" onclick="setPerspective('patient')">
+        <strong>Patient lens</strong>
+        <small>Usage, safety, counseling, and simple explanation</small>
+      </button>
+      <button class="lens-btn ${perspective === "pharmacist" ? "active" : ""}" onclick="setPerspective('pharmacist')">
+        <strong>Pharmacist lens</strong>
+        <small>Design, manufacturing, excipients, QC, and technical detail</small>
+      </button>
+    </div>
+  `;
+}
+
+function getRelated(item) {
+  return TABLETS.filter((x) => {
+    if (x.id === item.id) return false;
+    const sharedCategory = x.categories.some((c) => item.categories.includes(c));
+    const sharedRoute = x.route === item.route;
+    return sharedCategory || sharedRoute;
+  }).slice(0, 4);
+}
+
+function relatedHTML(items) {
+  return `
+    <section class="related-strip">
+      <h4>Continue exploring</h4>
+      <div class="related-row">
+        ${items
+          .map(
+            (x) => `
+              <button class="related-btn" onclick="openDetail('${x.id}')">
+                ${x.name}
+              </button>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -601,7 +821,7 @@ function sectionBodyHTML(section) {
 }
 
 function videoHTML(section, index, perspective) {
-  if (section.video === false) return "";
+  if (section.video === undefined) return "";
 
   const v = section.video || {};
   const title =
@@ -711,4 +931,11 @@ function normalizeIcon(value) {
 
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function scrollTo(selector) {
+  const el = document.querySelector(selector);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
