@@ -142,6 +142,122 @@ const VISUALS = {
   `
 };
 
+const ICONS = {
+  info: `
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 16v-4" />
+    <path d="M12 8h.01" />
+  `,
+  clipboard: `
+    <rect x="8" y="3" width="8" height="4" rx="1" />
+    <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+    <path d="M9 12h6" />
+    <path d="M9 16h4" />
+  `,
+  check: `
+    <circle cx="12" cy="12" r="9" />
+    <path d="m8.5 12.5 2.5 2.5 4.5-5" />
+  `,
+  alert: `
+    <path d="M10.3 3.9 2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+    <path d="M12 9v4" />
+    <path d="M12 17h.01" />
+  `,
+  book: `
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+  `,
+  layers: `
+    <path d="m12 2 9 5-9 5-9-5 9-5Z" />
+    <path d="m3 12 9 5 9-5" />
+    <path d="m3 17 9 5 9-5" />
+  `,
+  settings: `
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" />
+  `,
+  flask: `
+    <path d="M9 3h6" />
+    <path d="M10 3v6.5L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9.5V3" />
+    <path d="M7.5 14h9" />
+  `,
+  search: `
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  `,
+  scale: `
+    <path d="M12 3v18" />
+    <path d="M5 7h14" />
+    <path d="m5 7-3 6h6Z" />
+    <path d="m19 7-3 6h6Z" />
+    <path d="M8 21h8" />
+  `,
+  user: `
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  `,
+  pill: `
+    <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
+    <path d="m8.5 8.5 7 7" />
+  `,
+  play: `
+    <path d="M8 5v14l11-7Z" />
+  `,
+  close: `
+    <path d="M18 6 6 18" />
+    <path d="m6 6 12 12" />
+  `,
+  chevron: `
+    <path d="m6 9 6 6 6-6" />
+  `,
+  arrow: `
+    <path d="M5 12h14" />
+    <path d="m12 5 7 7-7 7" />
+  `,
+  shield: `
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+  `,
+  clock: `
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  `,
+  package: `
+    <path d="m7.5 4.3 9 5.1" />
+    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+    <path d="m3.3 7 8.7 5 8.7-5" />
+    <path d="M12 22V12" />
+  `,
+  syringe: `
+    <path d="m18 2 4 4" />
+    <path d="m17 7 3-3" />
+    <path d="M19 9 9 19l-4 1 1-4L16 6" />
+    <path d="m14 11 3 3" />
+  `,
+  droplet: `
+    <path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z" />
+  `,
+  tooth: `
+    <path d="M12 2c-3 0-4 2-6 2S3 6 3 9c0 4 2 6 3 10 1 3 2 3 3 0 1-2 1-4 3-4s2 2 3 4c1 3 2 3 3 0 1-4 3-6 3-10 0-3-1-5-3-5s-3-2-6-2Z" />
+  `,
+  chart: `
+    <path d="M3 3v18h18" />
+    <path d="M7 15l3-3 3 3 5-6" />
+  `
+};
+
+const EMOJI_CODE_MAP = {
+  0x2139: "info",
+  0x1f4cb: "clipboard",
+  0x2705: "check",
+  0x26a0: "alert",
+  0x1f4da: "book",
+  0x1f9f1: "layers",
+  0x2699: "settings",
+  0x1f9ea: "flask",
+  0x1f50d: "search",
+  0x2696: "scale"
+};
+
 const state = {
   role: localStorage.getItem("tab_role") || "",
   filter: "all",
@@ -170,7 +286,9 @@ function init() {
 
   document.querySelectorAll("#filters .chip").forEach((btn) => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("#filters .chip").forEach((b) => b.classList.remove("is-active"));
+      document
+        .querySelectorAll("#filters .chip")
+        .forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
       state.filter = btn.dataset.filter;
       render();
@@ -215,15 +333,15 @@ window.resetRole = function resetRole() {
 function applyRole() {
   document.body.dataset.role = state.role;
   const badge = $("#roleBadge");
-  badge.textContent = state.role === "patient" ? "Patient mode" : "Pharmacist mode";
+  badge.textContent =
+    state.role === "patient" ? "Patient mode" : "Pharmacist mode";
   badge.className = `role-badge role-badge-${state.role}`;
 }
 
 function render() {
   const items = TABLETS.filter((item) => {
     const matchesFilter =
-      state.filter === "all" ||
-      item.categories.includes(state.filter);
+      state.filter === "all" || item.categories.includes(state.filter);
 
     const searchable = [
       item.name,
@@ -254,7 +372,9 @@ function render() {
     grid.innerHTML = items.map(cardHTML).join("");
   }
 
-  $("#resultCount").textContent = `${items.length} tablet type${items.length === 1 ? "" : "s"}`;
+  $("#resultCount").textContent = `${items.length} tablet type${
+    items.length === 1 ? "" : "s"
+  }`;
 }
 
 function cardHTML(item) {
@@ -272,11 +392,13 @@ function cardHTML(item) {
         <p class="rep">${item.representative}</p>
         <p class="sum">${item.summary}</p>
         <div class="tags">
-          ${(item.tags || []).map((tag) => `<span>${tag}</span>`).join("")}
+          ${(item.tags || [])
+            .map((tag) => `<span>${tag}</span>`)
+            .join("")}
         </div>
         <div class="card-cta">
           <span>Open dossier</span>
-          <span>→</span>
+          ${iconHTML("arrow")}
         </div>
       </div>
     </article>
@@ -313,9 +435,15 @@ function renderDetail(item, perspective) {
 
   const facts = [
     { label: "Route / use", value: item.route },
-    { label: "Classification", value: item.categories.map(capitalize).join(" • ") },
+    {
+      label: "Classification",
+      value: item.categories.map(capitalize).join(" / ")
+    },
     { label: "Representative", value: item.representative },
-    { label: "Preparation", value: item.preparation || "See technical sections" }
+    {
+      label: "Preparation",
+      value: item.preparation || "See technical sections"
+    }
   ];
 
   $("#detailContent").innerHTML = `
@@ -334,10 +462,14 @@ function renderDetail(item, perspective) {
         <p>${item.summary}</p>
 
         <div class="perspective-toggle">
-          <button class="${perspective === "patient" ? "active" : ""}" onclick="setPerspective('patient')">
+          <button class="${
+            perspective === "patient" ? "active" : ""
+          }" onclick="setPerspective('patient')">
             Patient view
           </button>
-          <button class="${perspective === "pharmacist" ? "active" : ""}" onclick="setPerspective('pharmacist')">
+          <button class="${
+            perspective === "pharmacist" ? "active" : ""
+          }" onclick="setPerspective('pharmacist')">
             Pharmacist view
           </button>
         </div>
@@ -360,19 +492,23 @@ function renderDetail(item, perspective) {
       </aside>
 
       <div class="accordions">
-        ${sections.map((section, index) => sectionHTML(section, index, perspective)).join("")}
+        ${sections
+          .map((section, index) => sectionHTML(section, index, perspective))
+          .join("")}
       </div>
     </div>
   `;
 }
 
 function sectionHTML(section, index, perspective) {
+  const iconName = normalizeIcon(section.icon);
+
   return `
     <details class="accordion" ${index === 0 ? "open" : ""}>
       <summary>
-        <span class="acc-icon">${section.icon || "📄"}</span>
-        <span>${section.title}</span>
-        <span class="chev">⌄</span>
+        <span class="acc-icon">${iconHTML(iconName)}</span>
+        <span class="acc-title">${section.title}</span>
+        <span class="chev">${iconHTML("chevron")}</span>
       </summary>
       <div class="acc-body">
         ${sectionBodyHTML(section)}
@@ -417,22 +553,30 @@ function sectionBodyHTML(section) {
   if (section.pros || section.cons) {
     html += `
       <div class="pros-cons">
-        ${section.pros ? `
-          <div class="pros">
-            <h4>Advantages</h4>
-            <ul>
-              ${section.pros.map((p) => `<li>${p}</li>`).join("")}
-            </ul>
-          </div>
-        ` : ""}
-        ${section.cons ? `
-          <div class="cons">
-            <h4>Limitations</h4>
-            <ul>
-              ${section.cons.map((c) => `<li>${c}</li>`).join("")}
-            </ul>
-          </div>
-        ` : ""}
+        ${
+          section.pros
+            ? `
+              <div class="pros">
+                <h4>${iconHTML("check")} Advantages</h4>
+                <ul>
+                  ${section.pros.map((p) => `<li>${p}</li>`).join("")}
+                </ul>
+              </div>
+            `
+            : ""
+        }
+        ${
+          section.cons
+            ? `
+              <div class="cons">
+                <h4>${iconHTML("alert")} Limitations</h4>
+                <ul>
+                  ${section.cons.map((c) => `<li>${c}</li>`).join("")}
+                </ul>
+              </div>
+            `
+            : ""
+        }
       </div>
     `;
   }
@@ -440,7 +584,11 @@ function sectionBodyHTML(section) {
   if (section.warning) {
     html += `
       <div class="warning">
-        <strong>⚠️ Safety note:</strong> ${section.warning}
+        ${iconHTML("alert")}
+        <div class="warning-copy">
+          <strong>Safety note</strong>
+          <p>${section.warning}</p>
+        </div>
       </div>
     `;
   }
@@ -458,7 +606,9 @@ function videoHTML(section, index, perspective) {
   const v = section.video || {};
   const title =
     v.title ||
-    `${perspective === "patient" ? "Patient" : "Pharmacist"} explanation: ${section.title}`;
+    `${
+      perspective === "patient" ? "Patient" : "Pharmacist"
+    } explanation: ${section.title}`;
 
   const duration =
     v.duration ||
@@ -497,8 +647,12 @@ function videoHTML(section, index, perspective) {
   return `
     <div class="video-block">
       <div class="video-stage">
-        <div class="play"></div>
-        <div class="video-watermark">VIDEO PLACEHOLDER</div>
+        <div class="play">
+          <svg class="play-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5v14l11-7Z"></path>
+          </svg>
+        </div>
+        <div class="video-watermark">Video placeholder</div>
         <div class="wave">
           ${Array.from({ length: 12 }, () => "<span></span>").join("")}
         </div>
@@ -526,6 +680,33 @@ function mediaHTML(item, size = "") {
       ${VISUALS[item.visual] || VISUALS.default}
     </div>
   `;
+}
+
+function iconHTML(name, extraClass = "") {
+  const key = ICONS[name] ? name : "info";
+  return `
+    <svg
+      class="icon ${extraClass}"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      ${ICONS[key]}
+    </svg>
+  `;
+}
+
+function normalizeIcon(value) {
+  if (!value) return "info";
+
+  if (ICONS[value]) return value;
+
+  const code = value.codePointAt(0);
+  return EMOJI_CODE_MAP[code] || "info";
 }
 
 function capitalize(str) {
