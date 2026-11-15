@@ -1,0 +1,189 @@
+[
+  {
+    "id": "compressed-standard",
+    "name": "Standard Compressed Tablet",
+    "category": "compressed",
+    "route": "Oral Ingestion",
+    "representativeDrug": "Paracetamol (Panadol)",
+    "imagePath": "/assets/images/paracetamol.jpg",
+    "descriptionShort": "Most common form. Prepared by high-pressure compression.",
+    "content": {
+      "patient": {
+        "usage": "Swallow whole with water. Do not crush unless advised.",
+        "benefits": "Easy to take, precise dose.",
+        "warning": "Store in cool, dry place away from children.",
+        "videoId": "/assets/videos/patient_paracetamol.mp4"
+      },
+      "pharmacist": {
+        "manufacturing": "Direct Compression or Wet Granulation using Punches and Dies.",
+        "excipients": ["Lactose/MCC (Diluents)", "PVP/Starch (Binders)", "Magnesium Stearate (Lubricant)"],
+        "qcTests": "Hardness (>4kg), Friability (<1%), Weight Variation (±7.5% for >300mg).",
+        "advantages": "High stability, low cost, compact.",
+        "disadvantages": "Some drugs resist compression; bitter taste requires coating.",
+        "videoId": "/assets/videos/pharm_compression_mechanism.mp4"
+      }
+    }
+  },
+  {
+    "id": "enteric-coated",
+    "name": "Enteric Coated Tablet",
+    "category": "coated",
+    "route": "Delayed Release",
+    "representativeDrug": "Bisacodyl (Dulcolax)",
+    "imagePath": "/assets/images/bisacodyl.jpg",
+    "descriptionShort": "Resistant to gastric acid, dissolves in intestine.",
+    "content": {
+      "patient": {
+        "usage": "SWALLOW WHOLE. Never crush or chew. Take with full glass of water.",
+        "benefits": "Prevents stomach irritation; targets colon.",
+        "warning": "Crushing destroys the coating and causes severe stomach upset.",
+        "videoId": "/assets/videos/patient_enteric_instructions.mp4"
+      },
+      "pharmacist": {
+        "mechanism": "Polymer coating (e.g., Cellulose Acetate Phthalate) stable at pH < 5.5, soluble at pH > 6.8.",
+        "purpose": "Protects drug from acid degradation OR protects stomach from irritant drug.",
+        "qcTests": "Disintegration test: Must remain intact in Simulated Gastric Fluid (2 hrs), then disintegrate in Intestinal Fluid (within 60 mins).",
+        "excipients": ["HPMCP", "Eudragit L/S"],
+        "videoId": "/assets/videos/pharm_enteric_coating_process.mp4"
+      }
+    }
+  },
+  {
+    "id": "sublingual",
+    "name": "Sublingual Tablet",
+    "category": "oral-cavity",
+    "route": "Systemic (Rapid)",
+    "representativeDrug": "Nitroglycerin",
+    "imagePath": "/assets/images/nitroglycerin.jpg",
+    "descriptionShort": "Placed under tongue for rapid absorption into blood.",
+    "content": {
+      "patient": {
+        "usage": "Place UNDER tongue. Let dissolve completely. Do NOT swallow.",
+        "benefits": "Fast relief for chest pain (Angina). Avoids liver metabolism.",
+        "warning": "Do not eat or drink until fully dissolved.",
+        "videoId": "/assets/videos/patient_sublingual_demo.mp4"
+      },
+      "pharmacist": {
+        "absorption": "Via sublingual veins -> Superior Vena Cava -> Heart (Bypasses First Pass Metabolism).",
+        "formulation": "Small, soft, easily moistened by saliva. No disintegrants needed usually.",
+        "stability": "Sensitive to light/moisture. Often stored in dark glass bottles.",
+        "videoId": "/assets/videos/pharm_sublingual_pharmacokinetics.mp4"
+      }
+    }
+  },
+  {
+    "id": "chewable",
+    "name": "Chewable Tablet",
+    "category": "compressed",
+    "route": "Oral Ingestion",
+    "representativeDrug": "Antacid / Pediatric Vitamins",
+    "imagePath": "/assets/images/chewable.jpg",
+    "descriptionShort": "Designed to be chewed before swallowing.",
+    "content": {
+      "patient": {
+        "usage": "Chew thoroughly before swallowing.",
+        "benefits": "Good for children or those who cannot swallow pills. Fast acting antacids.",
+        "warning": "Check sugar content if diabetic.",
+        "videoId": "/assets/videos/patient_chewable_tips.mp4"
+      },
+      "pharmacist": {
+        "ingredients": "Sweeteners (Sorbitol, Mannitol), Flavorings, Colors.",
+        "hardness": "Lower hardness than standard tablets to facilitate chewing.",
+        "disintegrants": "Often omitted as mechanical chewing breaks the matrix.",
+        "videoId": "/assets/videos/pharm_chewable_formulation.mp4"
+      }
+    }
+  },
+  {
+    "id": "effervescent",
+    "name": "Effervescent Tablet",
+    "category": "other-routes",
+    "route": "Solution Preparation",
+    "representativeDrug": "Vitamin C Effervescent",
+    "imagePath": "/assets/images/effervescent.jpg",
+    "descriptionShort": "Releases CO2 when dissolved in water.",
+    "content": {
+      "patient": {
+        "usage": "DISSOLVE in water FIRST. Wait for fizzing to stop. NEVER swallow whole.",
+        "benefits": "Hydration aid, pleasant taste, fast absorption.",
+        "warning": "High sodium content may affect hypertension patients.",
+        "videoId": "/assets/videos/patient_effervescent_safety.mp4"
+      },
+      "pharmacist": {
+        "chemistry": "Acid (Citric/Tartaric) + Base (NaHCO3) + Water = CO2 Gas.",
+        "packaging": "Must be moisture-proof (Aluminum foil/blister). Hygroscopic nature.",
+        "solubility": "All excipients must be water-soluble.",
+        "videoId": "/assets/videos/pharm_effervescent_reaction.mp4"
+      }
+    }
+  },
+  {
+    "id": "vaginal",
+    "name": "Vaginal Tablet",
+    "category": "other-routes",
+    "route": "Local (Vagina)",
+    "representativeDrug": "Clotrimazole (Canesten)",
+    "imagePath": "/assets/images/clotrimazole.jpg",
+    "descriptionShort": "Inserted locally for treatment of infections.",
+    "content": {
+      "patient": {
+        "usage": "Insert deep into vagina using applicator. Lie down afterwards.",
+        "benefits": "Targeted therapy for yeast infections.",
+        "warning": "Complete the full course even if symptoms improve.",
+        "videoId": "/assets/videos/patient_vaginal_insertion.mp4"
+      },
+      "pharmacist": {
+        "base": "Water-soluble bases (PEG) or lipophilic bases that melt at body temp.",
+        "shape": "Ovoid or torpedo shape for ease of insertion.",
+        "dissolution": "Must disperse/dissolve rapidly upon contact with vaginal fluids.",
+        "videoId": "/assets/videos/pharm_vaginal_bases.mp4"
+      }
+    }
+  },
+  {
+    "id": "lozenges",
+    "name": "Lozenges (Pastilles)",
+    "category": "oral-cavity",
+    "route": "Local (Throat)",
+    "representativeDrug": "Strepsils / Antiseptic Lozenge",
+    "imagePath": "/assets/images/lozenge.jpg",
+    "descriptionShort": "Slow-dissolving tablet for throat soothing.",
+    "content": {
+      "patient": {
+        "usage": "Let dissolve slowly in mouth. Do not chew or swallow whole.",
+        "benefits": "Soothes sore throat, local antimicrobial action.",
+        "warning": "Keep out of reach of young children (choking hazard).",
+        "videoId": "/assets/videos/patient_lozenge_use.mp4"
+      },
+      "pharmacist": {
+        "composition": "High proportion of sugar/gum base. Hard texture.",
+        "release": "Controlled slow release via gradual erosion by saliva.",
+        "binders": "Gelatin or Tragacanth used for cohesion.",
+        "videoId": "/assets/videos/pharm_lozenge_manufacturing.mp4"
+      }
+    }
+  },
+  {
+    "id": "bilayer",
+    "name": "Bi-Layer / Multi-Compression",
+    "category": "coated",
+    "route": "Oral Ingestion",
+    "representativeDrug": "Combination Analgesics",
+    "imagePath": "/assets/images/bilayer.jpg",
+    "descriptionShort": "Two layers compressed together to separate incompatible drugs.",
+    "content": {
+      "patient": {
+        "usage": "Swallow whole. Both layers act together.",
+        "benefits": "Convenience: Two medicines in one pill.",
+        "warning": "Identify which layer is immediate vs sustained if applicable.",
+        "videoId": "/assets/videos/patient_bilayer_info.mp4"
+      },
+      "pharmacist": {
+        "manufacturing": "Requires specialized multi-station rotary press.",
+        "purpose": "Physical separation of incompatible ingredients (e.g., Oxidizer + Reducer) or different release rates.",
+        "appearance": "Distinct colors often used to differentiate layers visually.",
+        "videoId": "/assets/videos/pharm_multicompression_press.mp4"
+      }
+    }
+  }
+]
