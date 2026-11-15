@@ -1,65 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablet Dosage Forms | Living Presentation</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tablets Living Presentation | Dosage Forms III</title>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <!-- ROLE SELECTION MODAL -->
+  <div id="roleModal" class="overlay role-overlay">
+    <div class="role-card">
+      <div class="role-orb"></div>
+      <p class="role-kicker">Dosage Forms III Research Project</p>
+      <h1>Tablet Dosage Forms</h1>
+      <p>
+        Choose your viewing mode. The site will organize the same tablet knowledge
+        for either patient counseling or pharmacist/student technical study.
+      </p>
 
-    <!-- ROLE SELECTION MODAL -->
-    <div id="role-modal" class="modal-overlay active">
-        <div class="modal-content">
-            <h2>Welcome to the Tablet Guide</h2>
-            <p>Please select your role to customize the experience:</p>
-            <div class="btn-group">
-                <button onclick="setRole('patient')" class="btn btn-patient">👤 I am a Patient</button>
-                <button onclick="setRole('pharmacist')" class="btn btn-pharmacist">💊 I am a Pharmacist/Student</button>
-            </div>
-        </div>
+      <div class="role-actions">
+        <button class="role-btn role-btn-patient" onclick="setRole('patient')">
+          <span class="role-icon">🧑</span>
+          <strong>Patient</strong>
+          <small>How to use it, benefits, warnings, simple explanation</small>
+        </button>
+
+        <button class="role-btn role-btn-pharmacist" onclick="setRole('pharmacist')">
+          <span class="role-icon">💊</span>
+          <strong>Pharmacist / Student</strong>
+          <small>Design, manufacturing, excipients, QC, technical details</small>
+        </button>
+      </div>
+
+      <p class="role-footnote">
+        This prototype is static and ready for GitHub Pages. Video and image areas are intentionally placeholder-designed.
+      </p>
     </div>
+  </div>
 
-    <!-- MAIN APP CONTAINER -->
-    <header>
-        <nav>
-            <div class="logo">TabGuide</div>
-            <div class="user-badge" id="user-badge">Guest</div>
-            <button onclick="resetRole()" class="small-btn">Switch Role</button>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            <h1>Dosage Forms III: Tablets</h1>
-            <p>Interactive classification by Method of Preparation & Route of Administration.</p>
-        </section>
-
-        <!-- FILTERS/TABS -->
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All Types</button>
-            <button class="filter-btn" data-filter="compressed">Compressed</button>
-            <button class="filter-btn" data-filter="coated">Coated/Special Release</button>
-            <button class="filter-btn" data-filter="oral-cavity">Oral Cavity</button>
-            <button class="filter-btn" data-filter="other-routes">Other Routes</button>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">T</div>
+        <div>
+          <h2>TabGuide</h2>
+          <p>Living presentation • Tablets</p>
         </div>
+      </div>
 
-        <!-- CONTENT GRID -->
-        <div id="tablet-grid" class="grid-container">
-            <!-- Cards will be injected here by JS -->
-        </div>
-    </main>
-
-    <!-- DETAIL VIEW MODAL -->
-    <div id="detail-modal" class="modal-overlay hidden">
-        <div class="modal-large">
-            <span class="close-btn" onclick="closeDetail()">&times;</span>
-            <div id="detail-content">
-                <!-- Dynamic Content Here -->
-            </div>
-        </div>
+      <div class="top-controls">
+        <input
+          id="searchInput"
+          class="search"
+          type="text"
+          placeholder="Search drug, tablet type, route..."
+        />
+        <span id="roleBadge" class="role-badge">Select role</span>
+        <button class="ghost-btn" onclick="resetRole()">Switch role</button>
+      </div>
     </div>
+  </header>
 
-    <script src="script.js"></script>
+  <!-- MAIN -->
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Research-friendly interface</span>
+        <h1>Tablets, organized by science and use.</h1>
+        <p>
+          A structured presentation of tablet classification according to method of preparation,
+          route of administration, coating systems, and special release behavior.
+          Each tablet type includes representative examples, patient guidance, pharmacist details,
+          and video-ready explanation sections.
+        </p>
+
+        <div class="hero-chips">
+          <span>Method of preparation</span>
+          <span>Route of administration</span>
+          <span>Patient / Pharmacist modes</span>
+          <span>Video-ready sections</span>
+          <span>No build tools required</span>
+        </div>
+      </div>
+
+      <div class="hero-board">
+        <div class="board-title">Classification map</div>
+
+        <div class="branch">
+          <span>By method of preparation</span>
+          <div class="leaves">
+            <div class="leaf">Compressed</div>
+            <div class="leaf">Molded / Triturates</div>
+          </div>
+        </div>
+
+        <div class="branch">
+          <span>By route / use</span>
+          <div class="leaves">
+            <div class="leaf">Oral ingestion</div>
+            <div class="leaf">Oral cavity</div>
+            <div class="leaf">Other routes</div>
+            <div class="leaf">Solution preparation</div>
+          </div>
+        </div>
+
+        <div class="branch">
+          <span>Modified / coated systems</span>
+          <div class="leaves">
+            <div class="leaf">Enteric coated</div>
+            <div class="leaf">Sugar coated</div>
+            <div class="leaf">Film coated</div>
+            <div class="leaf">Multi-compressed</div>
+            <div class="leaf">Repeat action</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLBAR -->
+    <section class="toolbar">
+      <div class="filters" id="filters">
+        <button class="chip is-active" data-filter="all">All types</button>
+        <button class="chip" data-filter="method">Preparation</button>
+        <button class="chip" data-filter="oral">Oral ingestion</button>
+        <button class="chip" data-filter="modified">Coated / Modified</button>
+        <button class="chip" data-filter="cavity">Oral cavity</button>
+        <button class="chip" data-filter="other">Other routes</button>
+        <button class="chip" data-filter="solution">Solution prep</button>
+      </div>
+
+      <div class="count" id="resultCount"></div>
+    </section>
+
+    <!-- GRID -->
+    <section id="grid" class="grid"></section>
+  </main>
+
+  <!-- DETAIL MODAL -->
+  <div id="detailModal" class="overlay detail-overlay">
+    <div class="detail-shell">
+      <button class="close" onclick="closeDetail()" aria-label="Close">×</button>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Static research prototype based on tablet classification concepts from Dosage Forms III lecture material.
+      Replace placeholder videos by adding files under <code>assets/videos/</code> or updating
+      <code>video.src</code> / <code>video.embed</code> inside <code>data/tablets.js</code>.
+    </p>
+  </footer>
+
+  <script src="./data/tablets.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
