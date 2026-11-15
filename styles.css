@@ -1,0 +1,76 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-patient: #27ae60; /* Green */
+    --accent-pharmacist: #2980b9; /* Blue */
+    --bg-light: #f8f9fa;
+    --text-dark: #333;
+    --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+/* Header & Nav */
+header { background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; max-width: 1200px; margin: auto; }
+.logo { font-weight: bold; font-size: 1.2rem; color: var(--primary-color); }
+.user-badge { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+.badge-patient { background: var(--accent-patient); color: white; }
+.badge-pharmacist { background: var(--accent-pharmacist); color: white; }
+.small-btn { background: none; border: 1px solid #ccc; padding: 0.25rem 0.5rem; cursor: pointer; border-radius: 4px; font-size: 0.8rem; }
+
+/* Hero Section */
+.hero { text-align: center; padding: 3rem 1rem; background: linear-gradient(to right, #ffffff, #eef2f7); }
+.hero h1 { color: var(--primary-color); margin-bottom: 0.5rem; }
+
+/* Filters */
+.filters { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.filter-btn { padding: 0.5rem 1.5rem; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 25px; transition: all 0.3s; }
+.filter-btn.active, .filter-btn:hover { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+
+/* Grid Layout */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; padding: 0 2rem 4rem; max-width: 1200px; margin: auto; }
+
+/* Card Design */
+.card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+.card-img-placeholder { width: 100%; height: 180px; background-color: #eee; display: flex; align-items: center; justify-content: center; color: #aaa; font-style: italic; }
+.card-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+.card-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--primary-color); }
+.card-subtitle { font-size: 0.85rem; color: #666; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.card-desc { font-size: 0.95rem; color: #555; margin-bottom: 1rem; flex-grow: 1; }
+.card-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.tag { font-size: 0.75rem; padding: 0.2rem 0.5rem; background: #f0f0f0; border-radius: 4px; }
+
+/* Modals */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s; }
+.modal-overlay.active, .modal-overlay.show { opacity: 1; visibility: visible; }
+.hidden { display: none !important; }
+
+.modal-content { background: white; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%; text-align: center; }
+.modal-large { background: white; padding: 0; border-radius: 12px; max-width: 900px; width: 95%; max-height: 90vh; overflow-y: auto; position: relative; }
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #aaa; z-index: 10; }
+.close-btn:hover { color: #333; }
+
+/* Detail View Specifics */
+.detail-header { background: var(--primary-color); color: white; padding: 2rem; }
+.detail-body { padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .detail-body { grid-template-columns: 1fr; } }
+
+.section-block { margin-bottom: 1.5rem; }
+.section-title { font-size: 1.2rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+.video-placeholder { width: 100%; height: 200px; background: #333; color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-top: 1rem; }
+
+.btn-group button { padding: 1rem 2rem; margin: 0.5rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: bold; color: white; transition: transform 0.2s; }
+.btn-group button:hover { transform: scale(1.05); }
+.btn-patient { background-color: var(--accent-patient); }
+.btn-pharmacist { background-color: var(--accent-pharmacist); }
+
+/* Utility Classes for Role Visibility */
+.role-only-patient { display: none; }
+.role-only-pharmacist { display: none; }
+body[data-role="patient"] .role-only-patient { display: block; }
+body[data-role="patient"] .role-only-pharmacist { display: none; }
+body[data-role="pharmacist"] .role-only-patient { display: none; }
+body[data-role="pharmacist"] .role-only-pharmacist { display: block; }
