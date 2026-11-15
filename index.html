@@ -17,106 +17,87 @@
 <body>
   <!-- ROLE SELECTION MODAL -->
   <div id="roleModal" class="overlay role-overlay">
-    <div class="role-shell">
-      <div class="role-head">
-        <span class="role-kicker">Dosage Forms III · Research Presentation</span>
-        <h1>Choose the lens you want to explore</h1>
-        <p>
-          This site presents the same tablet classification system in two different ways.
-          Select the mode that matches how you want to learn or present the material.
-        </p>
+    <div class="role-card">
+      <div class="role-orb">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
+          <path d="m8.5 8.5 7 7" />
+        </svg>
       </div>
 
-      <div class="role-choices">
-        <button class="choice-card choice-patient" onclick="setRole('patient')">
-          <div class="choice-top">
-            <span class="choice-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            </span>
-            <div class="choice-copy">
-              <strong>Patient / Caregiver View</strong>
-              <span>Practical use, safety, and counseling language</span>
-            </div>
-          </div>
+      <p class="role-kicker">Dosage Forms III Research Project</p>
+      <h1>Tablet Dosage Forms</h1>
+      <p>
+        Select your viewing mode. The same tablet classification system will be
+        presented either as patient counseling guidance or as pharmacist/student
+        technical study material.
+      </p>
 
-          <p>
-            This mode answers the questions patients usually ask:
-            what the tablet is, how to take it, what to avoid, and why it matters.
-          </p>
-
-          <ul class="choice-list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m5 12 5 5L20 7" />
-              </svg>
-              Simple administration guidance
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m5 12 5 5L20 7" />
-              </svg>
-              Benefits and warnings in plain language
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m5 12 5 5L20 7" />
-              </svg>
-              Video-ready patient explanation sections
-            </li>
-          </ul>
-
-          <span class="choice-cta">Enter patient mode →</span>
+      <div class="role-actions">
+        <button class="role-btn role-btn-patient" onclick="setRole('patient')">
+          <span class="role-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </span>
+          <span class="role-text">
+            <strong>Patient</strong>
+            <small>
+              Simple usage guidance, benefits, warnings, and administration
+              instructions.
+            </small>
+          </span>
         </button>
 
-        <button class="choice-card choice-pharmacist" onclick="setRole('pharmacist')">
-          <div class="choice-top">
-            <span class="choice-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
-                <path d="m8.5 8.5 7 7" />
-              </svg>
-            </span>
-            <div class="choice-copy">
-              <strong>Pharmacist / Student View</strong>
-              <span>Technical design, manufacturing, and quality control</span>
-            </div>
-          </div>
-
-          <p>
-            This mode is built for academic presentation and deeper pharmaceutical understanding:
-            classification, structure, excipients, process, and QC.
-          </p>
-
-          <ul class="choice-list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m5 12 5 5L20 7" />
-              </svg>
-              Architecture and structural design
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m5 12 5 5L20 7" />
-              </svg>
-              Manufacturing process and excipient logic
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m5 12 5 5L20 7" />
-              </svg>
-              Quality control and technical comparison
-            </li>
-          </ul>
-
-          <span class="choice-cta">Enter pharmacist mode →</span>
+        <button
+          class="role-btn role-btn-pharmacist"
+          onclick="setRole('pharmacist')"
+        >
+          <span class="role-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
+              <path d="m8.5 8.5 7 7" />
+            </svg>
+          </span>
+          <span class="role-text">
+            <strong>Pharmacist / Student</strong>
+            <small>
+              Structural design, manufacturing, excipients, quality control,
+              and technical classification.
+            </small>
+          </span>
         </button>
       </div>
 
       <p class="role-footnote">
-        Static research prototype prepared for GitHub Pages. Image and video areas are intentionally designed as placeholders and can be replaced later with real media.
+        Static research prototype prepared for GitHub Pages. Image and video
+        areas are intentionally designed as placeholders and can be replaced
+        later with real media.
       </p>
     </div>
   </div>
@@ -126,14 +107,22 @@
     <div class="topbar-inner">
       <div class="brand">
         <div class="brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
             <path d="m8.5 8.5 7 7" />
           </svg>
         </div>
         <div>
           <h2>TabGuide</h2>
-          <p>Living presentation · Tablets</p>
+          <p>Living presentation, Tablets</p>
         </div>
       </div>
 
@@ -154,123 +143,55 @@
   <main>
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-main">
-        <span class="eyebrow">Interactive tablet classification</span>
-        <h1>Explore tablets as a living research presentation.</h1>
-        <p id="heroSub">
-          Move from classification to representative drugs, then switch between patient-facing guidance
-          and pharmacist-level technical detail. Each tablet type is organized as a dossier, not as random notes.
+      <div class="hero-copy">
+        <span class="eyebrow">Research-friendly interface</span>
+        <h1>Tablets, organized by science and use.</h1>
+        <p>
+          A structured presentation of tablet classification according to method
+          of preparation, route of administration, coating systems, and special
+          release behavior. Each tablet type includes representative examples,
+          patient guidance, pharmacist details, and video-ready explanation
+          sections.
         </p>
 
-        <div class="hero-actions">
-          <button class="primary-btn" onclick="startRecommended()">
-            Start recommended tour
-          </button>
-          <button class="secondary-btn" onclick="focusGrid()">
-            Browse all tablet types
-          </button>
-        </div>
-
-        <div class="hero-progress" id="progressCount">
-          0 of 0 dossiers explored
+        <div class="hero-chips">
+          <span>Method of preparation</span>
+          <span>Route of administration</span>
+          <span>Patient / Pharmacist modes</span>
+          <span>Video-ready sections</span>
+          <span>No build tools required</span>
         </div>
       </div>
 
-      <aside class="role-intro" id="roleIntro"></aside>
-    </section>
+      <div class="hero-board">
+        <div class="board-title">Classification map</div>
 
-    <!-- JOURNEY -->
-    <section class="journey">
-      <div class="section-head">
-        <h2>How to explore this project</h2>
-        <p>
-          The site is designed to guide the viewer from classification → representative drug → detailed dossier → explanation media.
-        </p>
-      </div>
-
-      <div class="journey-grid">
-        <article class="step-card">
-          <span class="step-num">01</span>
-          <h3>Select a classification</h3>
-          <p>
-            Start by understanding whether the tablet is classified by preparation method, route of administration, or modified-release behavior.
-          </p>
-          <button class="text-btn" data-journey="classification">
-            Go to classification explorer
-          </button>
-        </article>
-
-        <article class="step-card">
-          <span class="step-num">02</span>
-          <h3>Open a representative dossier</h3>
-          <p>
-            Each tablet type includes a representative example so the classification becomes concrete and easier to present.
-          </p>
-          <button class="text-btn" data-journey="dossier">
-            Open recommended example
-          </button>
-        </article>
-
-        <article class="step-card">
-          <span class="step-num">03</span>
-          <h3>Switch the viewing lens</h3>
-          <p>
-            Compare how the same tablet type is explained to a patient versus how it is analyzed by a pharmacist or student.
-          </p>
-          <button class="text-btn" data-journey="lens">
-            Switch viewing mode
-          </button>
-        </article>
-
-        <article class="step-card">
-          <span class="step-num">04</span>
-          <h3>Replace placeholders with media</h3>
-          <p>
-            Image and video areas are already designed. Later, you can drop in real product photos and recorded explanations.
-          </p>
-          <button class="text-btn" data-journey="browse">
-            View all tablet types
-          </button>
-        </article>
-      </div>
-    </section>
-
-    <!-- CLASSIFICATION EXPLORER -->
-    <section id="explorer" class="explorer">
-      <div class="section-head">
-        <h2>Classification explorer</h2>
-        <p>
-          Click any branch below to filter the tablet dossiers instantly. This makes the research flow feel guided instead of scattered.
-        </p>
-      </div>
-
-      <div class="explorer-grid">
-        <div class="explorer-branch">
-          <h3>By method of preparation</h3>
-          <div class="leaf-row">
-            <button class="leaf-btn" data-filter="method" data-query="compressed">Compressed</button>
-            <button class="leaf-btn" data-filter="method" data-query="molded">Molded / Triturates</button>
+        <div class="branch">
+          <span>By method of preparation</span>
+          <div class="leaves">
+            <div class="leaf">Compressed</div>
+            <div class="leaf">Molded / Triturates</div>
           </div>
         </div>
 
-        <div class="explorer-branch">
-          <h3>By route / use</h3>
-          <div class="leaf-row">
-            <button class="leaf-btn" data-filter="oral" data-query="">Oral ingestion</button>
-            <button class="leaf-btn" data-filter="cavity" data-query="">Oral cavity</button>
-            <button class="leaf-btn" data-filter="other" data-query="">Other routes</button>
-            <button class="leaf-btn" data-filter="solution" data-query="">Solution preparation</button>
+        <div class="branch">
+          <span>By route / use</span>
+          <div class="leaves">
+            <div class="leaf">Oral ingestion</div>
+            <div class="leaf">Oral cavity</div>
+            <div class="leaf">Other routes</div>
+            <div class="leaf">Solution preparation</div>
           </div>
         </div>
 
-        <div class="explorer-branch">
-          <h3>Modified / coated systems</h3>
-          <div class="leaf-row">
-            <button class="leaf-btn" data-filter="modified" data-query="enteric">Enteric coated</button>
-            <button class="leaf-btn" data-filter="modified" data-query="sugar">Sugar coated</button>
-            <button class="leaf-btn" data-filter="modified" data-query="film">Film coated</button>
-            <button class="leaf-btn" data-filter="modified" data-query="multiple">Multi-compressed</button>
-            <button class="leaf-btn" data-filter="modified" data-query="repeat">Repeat action</button>
+        <div class="branch">
+          <span>Modified / coated systems</span>
+          <div class="leaves">
+            <div class="leaf">Enteric coated</div>
+            <div class="leaf">Sugar coated</div>
+            <div class="leaf">Film coated</div>
+            <div class="leaf">Multi-compressed</div>
+            <div class="leaf">Repeat action</div>
           </div>
         </div>
       </div>
@@ -291,16 +212,6 @@
       <div class="count" id="resultCount"></div>
     </section>
 
-    <!-- SPOTLIGHT -->
-    <section class="spotlight-section">
-      <div class="section-head">
-        <h2>Recommended starting point</h2>
-        <p id="spotlightReason"></p>
-      </div>
-
-      <div id="spotlight"></div>
-    </section>
-
     <!-- GRID -->
     <section id="grid" class="grid"></section>
   </main>
@@ -309,7 +220,15 @@
   <div id="detailModal" class="overlay detail-overlay">
     <div class="detail-shell">
       <button class="close" onclick="closeDetail()" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
           <path d="M18 6 6 18" />
           <path d="m6 6 12 12" />
         </svg>
@@ -321,9 +240,11 @@
   <!-- FOOTER -->
   <footer>
     <p>
-      Static research prototype based on tablet classification concepts from Dosage Forms III lecture material.
-      Replace placeholder videos by adding files under <code>assets/videos/</code> or updating
-      <code>video.src</code> / <code>video.embed</code> inside <code>data/tablets.js</code>.
+      Static research prototype based on tablet classification concepts from
+      Dosage Forms III lecture material. Replace placeholder videos by adding
+      files under <code>assets/videos/</code> or updating
+      <code>video.src</code> / <code>video.embed</code> inside
+      <code>data/tablets.js</code>.
     </p>
   </footer>
 
