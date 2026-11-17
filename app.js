@@ -114,6 +114,15 @@ const SHORT_LABELS = {
   "Architecture and structural design": "Structure"
 };
 
+/* Pharmacist sections that should NOT show a video.
+   Only "tablet-formulation" keeps a video in pharmacist view. */
+const PHARMACIST_NO_VIDEO_KEYS = [
+  "api",
+  "excipients",
+  "manufacturer",
+  "architecture"
+];
+
 const FILTER_LABELS = {
   all: "All types",
   sugar: "Sugar-coated",
@@ -691,7 +700,17 @@ function sectionBodyHTML(section) {
 }
 
 function videoHTML(section, index, perspective, item) {
+  /* Explicit opt-out */
   if (section.video === false) return "";
+
+  /* Pharmacist view: only "tablet-formulation" keeps a video.
+     All other pharmacist sections show no video block. */
+  if (perspective === "pharmacist") {
+    const key = section.videoKey || slug(section.title);
+    if (PHARMACIST_NO_VIDEO_KEYS.includes(key)) {
+      return "";
+    }
+  }
 
   const key = section.videoKey || slug(section.title);
   const v = section.video || {};
