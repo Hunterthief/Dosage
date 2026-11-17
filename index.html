@@ -21,20 +21,23 @@
   <!-- ROLE SELECTION MODAL -->
   <div id="roleModal" class="overlay role-overlay">
     <div class="role-card">
-      <div class="role-orb icon-frame" data-fallback="T">
-        <img
-          src="./assets/images/pill.png"
-          alt="Tabsense pill icon"
-          class="icon-img"
-          onerror="this.parentNode.classList.add('icon-missing');"
-        />
+      <div class="role-brand">
+        <div class="role-orb icon-frame" data-fallback="T">
+          <img
+            src="./assets/images/pill.png"
+            alt="Tabsense pill icon"
+            class="icon-img"
+            onerror="this.parentNode.classList.add('icon-missing');"
+          />
+        </div>
+
+        <div class="role-brand-copy">
+          <h1 class="role-title">Tabsense</h1>
+          <p class="role-tagline">(Your portal to knowledge with just a click)</p>
+        </div>
       </div>
 
-      <p class="role-kicker">Tabsense</p>
-      <h1>Tablet Dosage Forms</h1>
-      <p>
-        Select your viewing mode.
-      </p>
+      <p class="role-instruction">Select your viewing mode.</p>
 
       <div class="role-actions">
         <button class="role-btn role-btn-patient" onclick="setRole('patient')">
