@@ -272,6 +272,8 @@ function $(selector) {
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
+  buildSearchIndex();
+
   if (state.role) {
     applyRole();
   } else {
@@ -281,16 +283,13 @@ function init() {
 
   $("#searchInput").addEventListener("input", (e) => {
     state.query = e.target.value.toLowerCase().trim();
+    updateVisibility();
     render();
   });
 
   document.querySelectorAll("#filters .chip").forEach((btn) => {
     btn.addEventListener("click", () => {
-      document
-        .querySelectorAll("#filters .chip")
-        .forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-      state.filter = btn.dataset.filter;
+      setActiveFilter(btn.dataset.filter);
       render();
     });
   });
@@ -307,72 +306,167 @@ function init() {
     }
   });
 
+  updateVisibility();
   render();
+}
+
+function buildSearchIndex() {
+  if (typeof TABLETS === "undefined") return;
+
+  TABLETS.forEach((item) => {
+    item._searchText = getSearchText(item);
+  });
+}
+
+function getSearchText(item) {
+  const parts = [
+    item.name,
+    item.representative,
+    item.route,
+    item.preparation,
+    item.summary,
+    ...(item.tags || []),
+    ...(item.categories || [])
+  ];
+
+  const addSections = (sections = []) => {
+    sections.forEach((section) => {
+      if (section.title) parts.push(section.title);
+      if (section.text) parts.push(section.text);
+      if (section.warning) parts.push(section.warning);
+      if (section.note) parts.push(section.note);
+
+      if (section.list) {
+        parts.push(section.list.join(" "));
+      }
+
+      if (section.facts) {
+        section.facts.forEach((fact) => {
+          parts.push(fact.label);
+          parts.push(fact.value);
+        });
+      }
+
+      if (section.pros) {
+        parts.push(section.pros.join(" "));
+      }
+
+      if (section.cons) {
+        parts.push(section.cons.join(" "));
+      }
+
+      if (section.video && section.video.title) {
+        parts.push(section.video.title);
+      }
+    });
+  };
+
+  addSections(item.patient);
+  addSections(item.pharmacist);
+
+  return parts.filter(Boolean).join(" ").toLowerCase();
 }
 
 window.setRole = function setRole(role) {
   state.role = role;
   localStorage.setItem("tab_role", role);
+
   $("#roleModal").classList.remove("is-open");
   document.body.classList.remove("locked");
+
   applyRole();
+  updateVisibility();
   render();
+
+  // Focus search only on larger screens to avoid mobile keyboard popping immediately.
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    $("#searchInput").focus({ preventScroll: true });
+  }
 };
 
 window.resetRole = function resetRole() {
   localStorage.removeItem("tab_role");
   state.role = "";
+  state.query = "";
+  state.filter = "all";
+
+  $("#searchInput").value = "";
   document.body.removeAttribute("data-role");
+  document.body.classList.remove("has-results");
+
   $("#roleBadge").textContent = "Select role";
   $("#roleBadge").className = "role-badge";
+
+  setActiveFilter("all");
+  render();
+
   $("#roleModal").classList.add("is-open");
   document.body.classList.add("locked");
   closeDetail();
 };
 
+window.clearSearch = function clearSearch() {
+  state.query = "";
+  state.filter = "all";
+  $("#searchInput").value = "";
+  setActiveFilter("all");
+  updateVisibility();
+  render();
+  $("#searchInput").focus({ preventScroll: true });
+};
+
 function applyRole() {
   document.body.dataset.role = state.role;
+
   const badge = $("#roleBadge");
   badge.textContent =
     state.role === "patient" ? "Patient mode" : "Pharmacist mode";
   badge.className = `role-badge role-badge-${state.role}`;
 }
 
+function updateVisibility() {
+  document.body.classList.toggle("has-results", Boolean(state.query));
+}
+
+function setActiveFilter(filter) {
+  state.filter = filter;
+
+  document.querySelectorAll("#filters .chip").forEach((btn) => {
+    btn.classList.toggle("is-active", btn.dataset.filter === filter);
+  });
+}
+
 function render() {
+  const grid = $("#grid");
+  const count = $("#resultCount");
+
+  if (!state.query) {
+    grid.innerHTML = "";
+    count.textContent = "";
+    return;
+  }
+
   const items = TABLETS.filter((item) => {
     const matchesFilter =
       state.filter === "all" || item.categories.includes(state.filter);
 
-    const searchable = [
-      item.name,
-      item.representative,
-      item.route,
-      item.preparation,
-      item.summary,
-      ...(item.tags || []),
-      ...(item.categories || [])
-    ]
-      .join(" ")
-      .toLowerCase();
-
-    const matchesQuery = !state.query || searchable.includes(state.query);
+    const searchText = item._searchText || getSearchText(item);
+    const matchesQuery = searchText.includes(state.query);
 
     return matchesFilter && matchesQuery;
   });
 
-  const grid = $("#grid");
-
   if (!items.length) {
     grid.innerHTML = `
       <div class="empty">
-        No tablet types match this search or filter.
+        No tablet types match this search.
       </div>
     `;
   } else {
     grid.innerHTML = items.map(cardHTML).join("");
   }
 
-  $("#resultCount").textContent = `${items.length} tablet type${
+  count.textContent = `${items.length} tablet type${
     items.length === 1 ? "" : "s"
   }`;
 }
@@ -411,15 +505,18 @@ window.openDetail = function openDetail(id) {
 
   state.openDetailId = id;
   renderDetail(item, state.role || "pharmacist");
+
   $("#detailModal").classList.add("is-open");
   document.body.classList.add("locked");
 };
 
 window.closeDetail = function closeDetail() {
   $("#detailModal").classList.remove("is-open");
+
   if (!$("#roleModal").classList.contains("is-open")) {
     document.body.classList.remove("locked");
   }
+
   state.openDetailId = null;
 };
 
