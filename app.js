@@ -82,13 +82,36 @@ const ICONS = {
     <path d="m3.3 7 8.7 5 8.7-5" />
     <path d="M12 22V12" />
   `,
-  chevron: `
-    <path d="m6 9 6 6 6-6" />
-  `,
   arrow: `
     <path d="M5 12h14" />
     <path d="m12 5 7 7-7 7" />
   `
+};
+
+/* Colorful but professional palette for topic buttons */
+const PALETTE = [
+  "#1d4ed8",
+  "#0f766e",
+  "#6d28d9",
+  "#b45309",
+  "#be185d",
+  "#0e7490",
+  "#047857",
+  "#4338ca",
+  "#c2410c"
+];
+
+/* Short labels shown on the small buttons */
+const SHORT_LABELS = {
+  "Dosage and administration": "Dosage",
+  "Administration tips": "Tips",
+  "Side effects": "Effects",
+  "Contraindications": "Cautions",
+  "API": "API",
+  "Tablet formulation": "Formula",
+  "Excipients": "Excipients",
+  "Manufacturer": "Maker",
+  "Architecture and structural design": "Structure"
 };
 
 const FILTER_LABELS = {
@@ -106,6 +129,8 @@ const state = {
   filter: "all",
   query: "",
   openDetailId: null,
+  openPerspective: "pharmacist",
+  activeSection: 0,
   autoOpenedId: null,
   suppressAutoOpen: false
 };
@@ -416,7 +441,10 @@ window.openDetail = function openDetail(id) {
   if (!item) return;
 
   state.openDetailId = id;
-  renderDetail(item, state.role || "pharmacist");
+  state.activeSection = 0;
+  state.openPerspective = state.role || "pharmacist";
+
+  renderDetail(item, state.openPerspective);
 
   $("#detailModal").classList.add("is-open");
   document.body.classList.add("locked");
@@ -430,18 +458,52 @@ window.closeDetail = function closeDetail() {
   }
 
   state.openDetailId = null;
+  state.activeSection = 0;
   state.suppressAutoOpen = true;
 };
 
 window.setPerspective = function setPerspective(perspective) {
   const item = TABLETS.find((x) => x.id === state.openDetailId);
-  if (item) {
-    renderDetail(item, perspective);
-  }
+  if (!item) return;
+
+  state.openPerspective = perspective;
+  state.activeSection = 0;
+  renderDetail(item, perspective);
+};
+
+/* Click a topic button -> pop that section into the stage */
+window.openSection = function openSection(index) {
+  const item = TABLETS.find((x) => x.id === state.openDetailId);
+  if (!item) return;
+
+  const perspective = state.openPerspective || state.role || "pharmacist";
+  const sections = perspective === "patient" ? item.patient : item.pharmacist;
+
+  if (index < 0 || index >= sections.length) return;
+
+  state.activeSection = index;
+
+  document.querySelectorAll("#sectionNav .section-btn").forEach((btn, i) => {
+    btn.classList.toggle("is-active", i === index);
+  });
+
+  const stage = $("#sectionStage");
+  if (!stage) return;
+
+  stage.classList.remove("is-pop");
+  void stage.offsetWidth; /* force reflow to restart animation */
+  stage.innerHTML = buildStageHTML(item, perspective, index);
+  stage.classList.add("is-pop");
 };
 
 function renderDetail(item, perspective) {
   const sections = perspective === "patient" ? item.patient : item.pharmacist;
+
+  const active =
+    state.activeSection != null && state.activeSection < sections.length
+      ? state.activeSection
+      : 0;
+  state.activeSection = active;
 
   const facts = [
     { label: "Type", value: item.type },
@@ -449,6 +511,24 @@ function renderDetail(item, perspective) {
     { label: "Manufacturer", value: item.manufacturer },
     { label: "Route / use", value: item.route }
   ];
+
+  const navHTML = sections
+    .map((section, i) => {
+      const color = PALETTE[i % PALETTE.length];
+      const short = shortLabel(section.title);
+      const icon = normalizeIcon(section.icon);
+      return `
+        <button
+          class="section-btn ${i === active ? "is-active" : ""}"
+          style="--btn-accent:${color}"
+          onclick="openSection(${i})"
+        >
+          ${iconHTML(icon)}
+          <span>${short}</span>
+        </button>
+      `;
+    })
+    .join("");
 
   $("#detailContent").innerHTML = `
     <div class="detail-hero">
@@ -495,32 +575,36 @@ function renderDetail(item, perspective) {
           .join("")}
       </aside>
 
-      <div class="accordions">
-        ${sections
-          .map((section, index) =>
-            sectionHTML(section, index, perspective, item)
-          )
-          .join("")}
+      <div class="detail-main">
+        <p class="section-nav-label">Tap a topic to open it</p>
+        <div class="section-nav" id="sectionNav">
+          ${navHTML}
+        </div>
+
+        <div class="section-stage is-pop" id="sectionStage">
+          ${buildStageHTML(item, perspective, active)}
+        </div>
       </div>
     </div>
   `;
 }
 
-function sectionHTML(section, index, perspective, item) {
-  const iconName = normalizeIcon(section.icon);
+function buildStageHTML(item, perspective, index) {
+  const sections = perspective === "patient" ? item.patient : item.pharmacist;
+  const section = sections[index];
+  const color = PALETTE[index % PALETTE.length];
+  const icon = normalizeIcon(section.icon);
 
   return `
-    <details class="accordion" ${index === 0 ? "open" : ""}>
-      <summary>
-        <span class="acc-icon">${iconHTML(iconName)}</span>
-        <span class="acc-title">${section.title}</span>
-        <span class="chev">${iconHTML("chevron")}</span>
-      </summary>
-      <div class="acc-body">
-        ${sectionBodyHTML(section)}
-        ${videoHTML(section, index, perspective, item)}
-      </div>
-    </details>
+    <div class="section-head" style="--btn-accent:${color}">
+      <span class="sh-icon">${iconHTML(icon)}</span>
+      <span class="sh-title">${section.title}</span>
+      <span class="sh-tag">${perspective}</span>
+    </div>
+    <div class="section-body">
+      ${sectionBodyHTML(section)}
+      ${videoHTML(section, index, perspective, item)}
+    </div>
   `;
 }
 
@@ -698,6 +782,12 @@ function normalizeIcon(value) {
   if (!value) return "info";
   if (ICONS[value]) return value;
   return "info";
+}
+
+function shortLabel(title) {
+  if (SHORT_LABELS[title]) return SHORT_LABELS[title];
+  const firstWord = String(title).trim().split(/\s+/)[0] || title;
+  return firstWord.length > 14 ? firstWord.slice(0, 12) + "…" : firstWord;
 }
 
 function slug(str) {
