@@ -639,111 +639,125 @@ const TABLETS = [
     ]
   },
 
-  {
-    id: "alphintern",
-    name: "Alphintern",
-    type: "Gastro-resistant, enterosoluble tablet",
-    formulation: "Gastro-resistant, enterosoluble tablet",
-    api: "Trypsin 300 E.A.U., Chymotrypsin 300 E.A.U.",
-    manufacturer: "Amoun Pharmaceutical Company S.A.E. (verify current pack).",
-    route: "Oral ingestion",
-    preparation: "Compression + gastro-resistant coating",
-    categories: ["oral", "modified", "enteric"],
-    filters: ["enteric"],
-    tags: [
-      "Trypsin",
-      "Chymotrypsin",
-      "proteolytic enzymes",
-      "enteric coated",
-      "gastro-resistant",
-      "Amoun Pharmaceutical Company"
-    ],
-    summary:
-      "Gastro-resistant, enterosoluble proteolytic enzyme tablet. The acid-resistant coating prevents premature dissolution in the stomach.",
-    visual: "enteric",
-    image: "",
-    patient: [
-      {
-        title: "Dosage and administration",
-        icon: "clipboard",
-        text:
-          "Follow the prescribed dose and exact product leaflet."
-      },
-      {
-        title: "Administration tips",
-        icon: "check",
-        list: [
-          "Swallow whole.",
-          "Do not crush or chew.",
-          "Take according to the prescribed schedule."
-        ]
-      },
-      {
-        title: "Side effects",
-        icon: "alert",
-        list: [
-          "Gastrointestinal disturbances.",
-          "Hypersensitivity reactions."
-        ]
-      },
-      {
-        title: "Contraindications",
-        icon: "shield",
-        list: [
-          "Hypersensitivity to trypsin.",
-          "Hypersensitivity to chymotrypsin or formulation ingredients."
-        ]
-      }
-    ],
-    pharmacist: [
-      {
-        title: "API",
-        icon: "flask",
-        text: "Trypsin: 300 E.A.U. Chymotrypsin: 300 E.A.U."
-      },
-      {
-        title: "Tablet formulation",
-        icon: "layers",
-        videoKey: "tablet-formulation",
-        text:
-          "Gastro-resistant, enterosoluble compressed tablet containing proteolytic enzymes. The coating prevents dissolution in the stomach and allows release in the higher-pH intestinal environment."
-      },
-      {
-        title: "Excipients",
-        icon: "settings",
-        list: [
-          "Core diluent: lactose or mannitol.",
-          "Core bulk: microcrystalline cellulose.",
-          "Core disintegrant: croscarmellose sodium or starch-based disintegrant.",
-          "Core glidant: colloidal silicon dioxide.",
-          "Core lubricant: magnesium stearate.",
-          "Gastro-resistant coat polymer: methacrylic acid copolymer, Eudragit L/S-type system.",
-          "Coat plasticizer: triethyl citrate or macrogol/PEG.",
-          "Coat opacifier: titanium dioxide.",
-          "Coat anti-tacking/glidant: talc."
-        ],
-        note:
-          "Representative gastro-resistant enzyme tablet excipient profile based on standard enteric-coated protease formulations. Exact Alphintern inactive ingredients require the manufacturer leaflet."
-      },
-      {
-        title: "Manufacturer",
-        icon: "package",
-        text:
-          "Alphintern is publicly associated in Egyptian pharmaceutical references with Amoun Pharmaceutical Company S.A.E. Confirm the current pack or Egyptian Drug Authority record before final submission."
-      },
-      {
-        title: "Architecture and structural design",
-        icon: "layers",
-        list: [
-          "Compressed core containing proteolytic enzymes.",
-          "Surrounded by an acid-resistant coating.",
-          "Prevents premature dissolution in the stomach.",
-          "Dissolves in the intestinal environment.",
-          "Protects enzymes from gastric acid."
-        ]
-      }
-    ]
-  },
+{
+  id: "alphintern",
+  name: "Alphintern",
+  type: "Gastro-resistant, enterosoluble tablet",
+  formulation: "Gastro-resistant, enterosoluble tablet",
+  api: "Trypsin 300 E.A.U., Chymotrypsin 300 E.A.U.",
+  manufacturer: "Amoun Pharmaceutical Company S.A.E. (verify current pack).",
+  route: "Oral ingestion",
+  preparation: "Compression + gastro-resistant coating",
+  categories: ["oral", "modified", "enteric"],
+  filters: ["enteric"],
+  tags: [
+    "Trypsin",
+    "Chymotrypsin",
+    "proteolytic enzymes",
+    "enteric coated",
+    "gastro-resistant",
+    "Amoun Pharmaceutical Company",
+    "anti-inflammatory enzyme"
+  ],
+  summary:
+    "Gastro-resistant, enterosoluble proteolytic enzyme tablet containing trypsin and chymotrypsin. The acid-resistant coating helps protect the enzymes from gastric degradation and supports intestinal release.",
+  visual: "enteric",
+  image: "",
+  patient: [
+    {
+      title: "Dosage and administration",
+      icon: "clipboard",
+      text:
+        "Egyptian-market product references commonly present Alphintern as an adult oral enzyme tablet. Usual adult dose: 1 tablet three times daily, or as directed by the physician. Duration should follow medical advice and the lowest effective dose should be used for the shortest necessary period.",
+      list: [
+        "Swallow the tablet whole with water.",
+        "Do not crush, split, or chew the gastro-resistant tablet.",
+        "Take before meals or between meals unless the prescriber advises otherwise.",
+        "Children should use this product only under direct medical supervision and prescribed dosing."
+      ],
+      note:
+        "For academic submission, verify the exact current dose, strength, pediatric wording, and duration from the Egyptian Drug Authority registration or the official manufacturer package insert supplied with the dispensed pack."
+    },
+    {
+      title: "Administration tips",
+      icon: "check",
+      list: [
+        "Do not break the enteric/gastro-resistant coating.",
+        "Take with a full glass of water.",
+        "Follow the prescribed schedule consistently.",
+        "If symptoms worsen or do not improve, contact the prescriber."
+      ]
+    },
+    {
+      title: "Side effects",
+      icon: "alert",
+      list: [
+        "Gastrointestinal disturbances.",
+        "Nausea or abdominal discomfort.",
+        "Hypersensitivity or allergic reactions in susceptible patients."
+      ]
+    },
+    {
+      title: "Contraindications",
+      icon: "shield",
+      list: [
+        "Hypersensitivity to trypsin.",
+        "Hypersensitivity to chymotrypsin.",
+        "Hypersensitivity to any formulation ingredient.",
+        "Use with caution in patients with bleeding disorders or those receiving anticoagulant therapy, unless medically supervised."
+      ]
+    }
+  ],
+  pharmacist: [
+    {
+      title: "API",
+      icon: "flask",
+      text:
+        "Trypsin: 300 E.A.U. Chymotrypsin: 300 E.A.U."
+    },
+    {
+      title: "Tablet formulation",
+      icon: "layers",
+      videoKey: "tablet-formulation",
+      text:
+        "Gastro-resistant, enterosoluble compressed tablet containing proteolytic enzymes. The coating is designed to prevent premature dissolution in the stomach and allow release in the higher-pH intestinal environment."
+    },
+    {
+      title: "Excipients",
+      icon: "settings",
+      list: [
+        "Core diluent: lactose or mannitol.",
+        "Core bulk: microcrystalline cellulose.",
+        "Core disintegrant: croscarmellose sodium or starch-based disintegrant.",
+        "Core glidant: colloidal silicon dioxide.",
+        "Core lubricant: magnesium stearate.",
+        "Gastro-resistant coat polymer: methacrylic acid copolymer, Eudragit L/S-type system.",
+        "Coat plasticizer: triethyl citrate or macrogol/PEG.",
+        "Coat opacifier: titanium dioxide.",
+        "Coat anti-tacking/glidant: talc."
+      ],
+      note:
+        "Representative gastro-resistant enzyme tablet excipient profile based on standard enteric-coated protease formulations. Exact Alphintern inactive ingredients require the manufacturer leaflet."
+    },
+    {
+      title: "Manufacturer",
+      icon: "package",
+      text:
+        "Alphintern is publicly associated in Egyptian pharmaceutical references with Amoun Pharmaceutical Company S.A.E. Confirm the current pack or Egyptian Drug Authority record before final submission."
+    },
+    {
+      title: "Architecture and structural design",
+      icon: "layers",
+      list: [
+        "Compressed core containing proteolytic enzymes.",
+        "Surrounded by an acid-resistant gastro-resistant coating.",
+        "Prevents premature dissolution in the stomach.",
+        "Dissolves in the intestinal environment.",
+        "Helps protect enzymes from gastric acid degradation."
+      ]
+    }
+  ]
+},
 
   {
     id: "claritin-pediatrics",
