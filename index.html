@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Tabsense</title>
 
+  <link rel="icon" type="image/png" href="./assets/images/pill.png" />
+  <link rel="apple-touch-icon" href="./assets/images/pill.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -18,19 +21,13 @@
   <!-- ROLE SELECTION MODAL -->
   <div id="roleModal" class="overlay role-overlay">
     <div class="role-card">
-      <div class="role-orb">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
-          <path d="m8.5 8.5 7 7" />
-        </svg>
+      <div class="role-orb icon-frame" data-fallback="T">
+        <img
+          src="./assets/images/pill.png"
+          alt="Tabsense pill icon"
+          class="icon-img"
+          onerror="this.parentNode.classList.add('icon-missing');"
+        />
       </div>
 
       <p class="role-kicker">Tabsense</p>
@@ -41,19 +38,13 @@
 
       <div class="role-actions">
         <button class="role-btn role-btn-patient" onclick="setRole('patient')">
-          <span class="role-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
+          <span class="role-icon icon-frame" data-fallback="P">
+            <img
+              src="./assets/images/patient.png"
+              alt="Patient icon"
+              class="icon-img"
+              onerror="this.parentNode.classList.add('icon-missing');"
+            />
           </span>
           <span class="role-text">
             <strong>Patient</strong>
@@ -64,19 +55,13 @@
           class="role-btn role-btn-pharmacist"
           onclick="setRole('pharmacist')"
         >
-          <span class="role-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
-              <path d="m8.5 8.5 7 7" />
-            </svg>
+          <span class="role-icon icon-frame" data-fallback="Rx">
+            <img
+              src="./assets/images/pharmacist.png"
+              alt="Pharmacist icon"
+              class="icon-img"
+              onerror="this.parentNode.classList.add('icon-missing');"
+            />
           </span>
           <span class="role-text">
             <strong>Pharmacist / Student</strong>
@@ -90,22 +75,16 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="brand-mark">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M10.5 20.5a5 5 0 0 1-7-7l7-7a5 5 0 0 1 7 7Z" />
-            <path d="m8.5 8.5 7 7" />
-          </svg>
+        <div class="brand-mark icon-frame" data-fallback="T">
+          <img
+            src="./assets/images/pill.png"
+            alt="Tabsense logo"
+            class="icon-img brand-logo"
+            onerror="this.parentNode.classList.add('icon-missing');"
+          />
         </div>
         <div>
-          <h2>TabGuide</h2>
+          <h2>Tabsense</h2>
           <p>Living presentation, Tablets</p>
         </div>
       </div>
