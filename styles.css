@@ -1945,3 +1945,163 @@ code {
     margin-bottom: 16px;
   }
 }
+/* =========================
+   Centered mobile fit + dynamic results + media fallback
+   ========================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  width: min(100%, 1280px);
+  margin-inline: auto;
+}
+
+.search-console-inner,
+.toolbar,
+.grid {
+  margin-inline: auto;
+}
+
+.search-console-inner {
+  text-align: center;
+}
+
+.search-box {
+  text-align: left;
+}
+
+.toolbar {
+  justify-content: center;
+}
+
+.filters {
+  justify-content: center;
+}
+
+.count {
+  width: 100%;
+  text-align: center;
+}
+
+.grid {
+  justify-content: center;
+  align-content: start;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.visual {
+  position: relative;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: white;
+}
+
+.video-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #020617;
+  overflow: hidden;
+}
+
+.video-media .real-video {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black;
+}
+
+.video-placeholder-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+
+.video-block:not(.video-missing) .video-placeholder-stage {
+  display: none;
+}
+
+.video-block.video-missing .real-video {
+  display: none;
+}
+
+.video-block.video-missing .video-placeholder-stage {
+  display: grid;
+}
+
+.video-note code {
+  background: rgba(148, 163, 184, 0.18);
+  color: #e2e8f0;
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    max-width: 560px;
+  }
+
+  .toolbar {
+    align-items: center;
+  }
+
+  .filters {
+    justify-content: flex-start;
+  }
+
+  .count {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .search-console {
+    padding: 14px 0;
+  }
+
+  .search-console-inner {
+    width: 100%;
+  }
+
+  .search-box {
+    border-radius: 24px;
+  }
+
+  .card {
+    max-width: none;
+  }
+
+  .detail-hero,
+  .detail-body,
+  .acc-body,
+  .warning,
+  .note,
+  .quick-facts,
+  .accordion summary {
+    text-align: left;
+  }
+}
