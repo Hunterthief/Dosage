@@ -114,15 +114,6 @@ const SHORT_LABELS = {
   "Architecture and structural design": "Structure"
 };
 
-/* Pharmacist sections that should NOT show a video.
-   Only "tablet-formulation" keeps a video in pharmacist view. */
-const PHARMACIST_NO_VIDEO_KEYS = [
-  "api",
-  "excipients",
-  "manufacturer",
-  "architecture"
-];
-
 const FILTER_LABELS = {
   all: "All types",
   sugar: "Sugar-coated",
@@ -700,34 +691,31 @@ function sectionBodyHTML(section) {
 }
 
 function videoHTML(section, index, perspective, item) {
-  /* Explicit opt-out */
-  if (section.video === false) return "";
+  const key = section.videoKey || slug(section.title);
 
-  /* Pharmacist view: only "tablet-formulation" keeps a video.
-     All other pharmacist sections show no video block. */
-  if (perspective === "pharmacist") {
-    const key = section.videoKey || slug(section.title);
-    if (PHARMACIST_NO_VIDEO_KEYS.includes(key)) {
-      return "";
-    }
+  /*
+    IMPORTANT RULE:
+    Only pharmacist-view Tablet formulation has a video.
+    Patient view has no videos.
+    All other pharmacist sections have no videos.
+  */
+  if (perspective !== "pharmacist" || key !== "tablet-formulation") {
+    return "";
   }
 
-  const key = section.videoKey || slug(section.title);
+  if (section.video === false) return "";
+
   const v = section.video || {};
-  const src = v.src || `./assets/videos/${item.id}_${key}.mp4`;
+  const src = v.src || `./assets/videos/${item.id}_tablet-formulation.mp4`;
   const title =
     v.title ||
-    `${
-      perspective === "patient" ? "Patient" : "Pharmacist"
-    } explanation: ${section.title}`;
+    `Pharmacist explanation: Tablet formulation — ${item.name}`;
 
-  const duration =
-    v.duration ||
-    ["00:48", "01:12", "01:36", "00:58", "01:05"][index % 5];
+  const duration = v.duration || "01:20";
 
   const note =
     v.note ||
-    `Expected video file: <code>assets/videos/${item.id}_${key}.mp4</code>`;
+    `Expected video file: <code>assets/videos/${item.id}_tablet-formulation.mp4</code>`;
 
   return `
     <div class="video-block">
