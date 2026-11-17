@@ -2004,3 +2004,96 @@ code {
     padding-right: 46px;
   }
 }
+/* =========================
+   Custom image icons + fallback
+   ========================= */
+
+.icon-frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.icon-img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  object-fit: contain;
+}
+
+.icon-frame::after {
+  content: attr(data-fallback);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+.icon-missing::after {
+  display: flex;
+}
+
+.icon-missing .icon-img {
+  display: none;
+}
+
+.brand-mark .icon-img {
+  width: 26px;
+  height: 26px;
+}
+
+.role-orb .icon-img {
+  width: 40px;
+  height: 40px;
+}
+
+.role-icon .icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+.brand-mark::after {
+  font-size: 18px;
+}
+
+.role-orb::after {
+  font-size: 28px;
+}
+
+.role-icon::after {
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  .brand-mark .icon-img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .role-orb .icon-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .role-icon .icon-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .brand-mark::after {
+    font-size: 16px;
+  }
+
+  .role-orb::after {
+    font-size: 22px;
+  }
+
+  .role-icon::after {
+    font-size: 14px;
+  }
+}
