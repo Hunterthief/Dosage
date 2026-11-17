@@ -85,7 +85,7 @@
         </div>
 
         <label class="sr-only" for="searchInput">
-          Search tablet types, drugs, routes, excipients, or manufacturing terms
+          Search drug, tablet type, route, excipient, manufacturer, or section title
         </label>
 
         <div class="search-box" id="searchBox">
@@ -108,7 +108,7 @@
             class="search-input"
             type="search"
             autocomplete="off"
-            placeholder="Search drug, tablet type, route, excipient, manufacturing..."
+            placeholder="Search drug, API, tablet type, excipient, manufacturer..."
           />
 
           <button
@@ -125,16 +125,7 @@
 
     <!-- TOOLBAR -->
     <section class="toolbar" id="toolbarSection">
-      <div class="filters" id="filters">
-        <button class="chip is-active" data-filter="all">All types</button>
-        <button class="chip" data-filter="method">Preparation</button>
-        <button class="chip" data-filter="oral">Oral ingestion</button>
-        <button class="chip" data-filter="modified">Coated / Modified</button>
-        <button class="chip" data-filter="cavity">Oral cavity</button>
-        <button class="chip" data-filter="other">Other routes</button>
-        <button class="chip" data-filter="solution">Solution prep</button>
-      </div>
-
+      <div class="filters" id="filters"></div>
       <div class="count" id="resultCount"></div>
     </section>
 
@@ -167,9 +158,8 @@
   <footer>
     <p>
       Replace placeholder videos by adding files under
-      <code>assets/videos/</code> or updating
-      <code>video.src</code> / <code>video.embed</code> inside
-      <code>data/tablets.js</code>.
+      <code>assets/videos/</code>. Expected pattern:
+      <code>&lt;drug-id&gt;_&lt;section-key&gt;.mp4</code>.
     </p>
   </footer>
 
