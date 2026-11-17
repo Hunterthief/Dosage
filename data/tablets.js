@@ -5,7 +5,7 @@ const TABLETS = [
     type: "Sugar-coated tablet",
     formulation: "Sugar-coated tablet",
     api: "Diclofenac potassium",
-    manufacturer: "Requires confirmation from the Egyptian package.",
+    manufacturer: "Marcel Pharmaceutical Company (verify current Egyptian pack).",
     route: "Oral ingestion",
     preparation: "Compression + sugar coating",
     categories: ["oral", "modified", "sugar"],
@@ -16,7 +16,8 @@ const TABLETS = [
       "sugar coated",
       "oral",
       "anti-inflammatory",
-      "analgesic"
+      "analgesic",
+      "Marcel Pharmaceutical Company"
     ],
     summary:
       "Sugar-coated diclofenac potassium tablet. The sugar coating masks unpleasant taste and odor, improves appearance, and makes swallowing easier.",
@@ -70,7 +71,7 @@ const TABLETS = [
         icon: "layers",
         videoKey: "tablet-formulation",
         text:
-          "Sugar-coated compressed tablet. The core contains diclofenac potassium with diluents, binder, disintegrant, glidant, and lubricant. External sugar-coating layers improve swallowability, mask taste/odor, and enhance appearance."
+          "Sugar-coated compressed tablet. The core contains diclofenac potassium with diluents, binder, disintegrant, glidant, and lubricant. External sugar-coating layers improve swallowability, mask taste and odor, and enhance appearance."
       },
       {
         title: "Excipients",
@@ -91,7 +92,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Requires confirmation from the Egyptian package."
+        text:
+          "Public Egyptian pharmaceutical references associate Vastaflam with Marcel Pharmaceutical Company. For an academic submission, confirm the current marketing authorization holder from the Egyptian Drug Authority record or the official package insert."
       },
       {
         title: "Architecture and structural design",
@@ -127,7 +129,8 @@ const TABLETS = [
       "pyridoxine",
       "cyanocobalamin",
       "sugar coated",
-      "neuropathy"
+      "neuropathy",
+      "European Egyptian Pharmaceutical Industries"
     ],
     summary:
       "Sugar-coated combination B-vitamin tablet. The coating masks unpleasant taste and improves appearance and swallowability.",
@@ -201,7 +204,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "European Egyptian Pharmaceutical Industries."
+        text:
+          "European Egyptian Pharmaceutical Industries."
       },
       {
         title: "Architecture and structural design",
@@ -232,7 +236,8 @@ const TABLETS = [
       "donepezil hydrochloride",
       "film coated",
       "Alzheimer",
-      "cholinesterase inhibitor"
+      "cholinesterase inhibitor",
+      "Eisai"
     ],
     summary:
       "Film-coated donepezil hydrochloride tablet. The thin polymer film improves appearance, masks taste, and facilitates swallowing.",
@@ -307,7 +312,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Eisai (original brand)."
+        text:
+          "Eisai is the original brand manufacturer/reference company for Aricept. Confirm the local Egyptian pack for importer, distributor, or licensed manufacturer details if required."
       },
       {
         title: "Architecture and structural design",
@@ -329,7 +335,7 @@ const TABLETS = [
     type: "Film-coated tablet",
     formulation: "Film-coated tablet",
     api: "Requires verification from the Egyptian package.",
-    manufacturer: "Requires verification.",
+    manufacturer: "Pending verification from EDA registration / official Egyptian package.",
     route: "Oral ingestion",
     preparation: "Compression + film coating",
     categories: ["oral", "modified", "film"],
@@ -338,7 +344,8 @@ const TABLETS = [
       "Gliptalina",
       "film coated",
       "verification required",
-      "unknown API"
+      "unknown API",
+      "pending manufacturer"
     ],
     summary:
       "Film-coated tablet. The active ingredient and manufacturer require verification from the Egyptian package.",
@@ -402,7 +409,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Requires verification."
+        text:
+          "A confidently verifiable manufacturer could not be established from the available reputable public references. Populate this section only after checking the Egyptian Drug Authority product registration or the official package insert."
       },
       {
         title: "Architecture and structural design",
@@ -509,7 +517,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Gypto Pharma."
+        text:
+          "Gypto Pharma."
       },
       {
         title: "Architecture and structural design",
@@ -613,7 +622,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Pharopharma."
+        text:
+          "Pharopharma."
       },
       {
         title: "Architecture and structural design",
@@ -635,7 +645,7 @@ const TABLETS = [
     type: "Gastro-resistant, enterosoluble tablet",
     formulation: "Gastro-resistant, enterosoluble tablet",
     api: "Trypsin 300 E.A.U., Chymotrypsin 300 E.A.U.",
-    manufacturer: "Confirm from the Egyptian package.",
+    manufacturer: "Amoun Pharmaceutical Company S.A.E. (verify current pack).",
     route: "Oral ingestion",
     preparation: "Compression + gastro-resistant coating",
     categories: ["oral", "modified", "enteric"],
@@ -645,7 +655,8 @@ const TABLETS = [
       "Chymotrypsin",
       "proteolytic enzymes",
       "enteric coated",
-      "gastro-resistant"
+      "gastro-resistant",
+      "Amoun Pharmaceutical Company"
     ],
     summary:
       "Gastro-resistant, enterosoluble proteolytic enzyme tablet. The acid-resistant coating prevents premature dissolution in the stomach.",
@@ -717,7 +728,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Confirm from the Egyptian package."
+        text:
+          "Alphintern is publicly associated in Egyptian pharmaceutical references with Amoun Pharmaceutical Company S.A.E. Confirm the current pack or Egyptian Drug Authority record before final submission."
       },
       {
         title: "Architecture and structural design",
@@ -739,7 +751,7 @@ const TABLETS = [
     type: "Chewable tablet",
     formulation: "Chewable tablet",
     api: "Loratadine",
-    manufacturer: "Bayer (original brand)",
+    manufacturer: "Bayer (original brand; verify local Egyptian distributor/importer on pack).",
     route: "Oral ingestion after chewing",
     preparation: "Compression, chewable design",
     categories: ["oral", "chewable"],
@@ -749,7 +761,8 @@ const TABLETS = [
       "antihistamine",
       "pediatric",
       "chewable",
-      "Claritin"
+      "Claritin",
+      "Bayer"
     ],
     summary:
       "Chewable loratadine pediatric tablet. Designed to be chewed before swallowing to improve palatability for children.",
@@ -822,7 +835,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Bayer (original brand)."
+        text:
+          "Claritin is originally a Bayer brand. The Egyptian pediatric chewable pack may show a local importer, distributor, or licensed manufacturer; confirm the exact entity printed on the dispensed package."
       },
       {
         title: "Architecture and structural design",
@@ -844,7 +858,7 @@ const TABLETS = [
     type: "Chewable tablet",
     formulation: "Chewable tablet",
     api: "Montelukast 4 mg (verify the Egyptian pack)",
-    manufacturer: "Requires verification.",
+    manufacturer: "Gypto Pharma",
     route: "Oral ingestion after chewing",
     preparation: "Compression, chewable design",
     categories: ["oral", "chewable"],
@@ -854,7 +868,8 @@ const TABLETS = [
       "leukotriene receptor antagonist",
       "asthma",
       "chewable",
-      "pediatric"
+      "pediatric",
+      "Gypto Pharma"
     ],
     summary:
       "Chewable montelukast 4 mg tablet. Designed to be chewed rather than swallowed whole, with sweeteners and flavouring agents to improve taste.",
@@ -928,7 +943,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Requires verification."
+        text:
+          "Clearair 4 mg chewable montelukast is publicly associated with Gypto Pharma in Egyptian pharmaceutical references. Confirm the current pack or Egyptian Drug Authority record before final submission."
       },
       {
         title: "Architecture and structural design",
@@ -949,7 +965,7 @@ const TABLETS = [
     type: "Chewable tablet",
     formulation: "Chewable tablet",
     api: "Acetylsalicylic acid (Aspirin)",
-    manufacturer: "Requires verification.",
+    manufacturer: "Gypto Pharma",
     route: "Oral ingestion after chewing",
     preparation: "Compression, chewable design",
     categories: ["oral", "chewable"],
@@ -960,7 +976,8 @@ const TABLETS = [
       "pediatric",
       "chewable",
       "analgesic",
-      "antipyretic"
+      "antipyretic",
+      "Gypto Pharma"
     ],
     summary:
       "Chewable pediatric aspirin tablet. Designed to be broken down through chewing to facilitate administration for patients who have difficulty swallowing conventional tablets.",
@@ -1036,7 +1053,8 @@ const TABLETS = [
       {
         title: "Manufacturer",
         icon: "package",
-        text: "Requires verification."
+        text:
+          "Aspocid Pediatrics chewable aspirin is publicly associated with Gypto Pharma in Egyptian pharmaceutical references. Confirm the current pack or Egyptian Drug Authority record before final submission."
       },
       {
         title: "Architecture and structural design",
