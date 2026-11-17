@@ -74,97 +74,57 @@
     </div>
   </div>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-mark icon-frame" data-fallback="T">
-          <img
-            src="./assets/images/pill.png"
-            alt="Tabsense logo"
-            class="icon-img brand-logo"
-            onerror="this.parentNode.classList.add('icon-missing');"
-          />
-        </div>
-        <div>
-          <h2>Tabsense</h2>
-          <p>Living presentation, Tablets</p>
-        </div>
-      </div>
-
-      <div class="top-controls">
-        <input
-          id="searchInput"
-          class="search"
-          type="text"
-          placeholder="Search drug, tablet type, route..."
-        />
-        <span id="roleBadge" class="role-badge">Select role</span>
-        <button class="ghost-btn" onclick="resetRole()">Switch role</button>
-      </div>
-    </div>
-  </header>
-
   <!-- MAIN -->
   <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">Research-friendly interface</span>
-        <h1>Tablets, organized by science and use.</h1>
-        <p>
-          A structured presentation of tablet classification according to method
-          of preparation, route of administration, coating systems, and special
-          release behavior. Each tablet type includes representative examples,
-          patient guidance, pharmacist details, and video-ready explanation
-          sections.
-        </p>
-
-        <div class="hero-chips">
-          <span>Method of preparation</span>
-          <span>Route of administration</span>
-          <span>Patient / Pharmacist modes</span>
-          <span>Video-ready sections</span>
-          <span>No build tools required</span>
-        </div>
-      </div>
-
-      <div class="hero-board">
-        <div class="board-title">Classification map</div>
-
-        <div class="branch">
-          <span>By method of preparation</span>
-          <div class="leaves">
-            <div class="leaf">Compressed</div>
-            <div class="leaf">Molded / Triturates</div>
-          </div>
+    <!-- SEARCH ENGINE STYLE CONSOLE -->
+    <section id="searchConsole" class="search-console">
+      <div class="search-console-inner">
+        <div class="search-console-meta">
+          <span id="roleBadge" class="role-badge">Select role</span>
+          <button class="ghost-btn" onclick="resetRole()">Switch role</button>
         </div>
 
-        <div class="branch">
-          <span>By route / use</span>
-          <div class="leaves">
-            <div class="leaf">Oral ingestion</div>
-            <div class="leaf">Oral cavity</div>
-            <div class="leaf">Other routes</div>
-            <div class="leaf">Solution preparation</div>
-          </div>
-        </div>
+        <label class="sr-only" for="searchInput">
+          Search tablet types, drugs, routes, or keywords
+        </label>
 
-        <div class="branch">
-          <span>Modified / coated systems</span>
-          <div class="leaves">
-            <div class="leaf">Enteric coated</div>
-            <div class="leaf">Sugar coated</div>
-            <div class="leaf">Film coated</div>
-            <div class="leaf">Multi-compressed</div>
-            <div class="leaf">Repeat action</div>
-          </div>
+        <div class="search-box">
+          <svg
+            class="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.9"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" />
+          </svg>
+
+          <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            autocomplete="off"
+            placeholder="Search drug, tablet type, route, excipient, manufacturing..."
+          />
+
+          <button
+            id="clearSearch"
+            class="clear-search"
+            onclick="clearSearch()"
+            aria-label="Clear search"
+          >
+            Clear
+          </button>
         </div>
       </div>
     </section>
 
     <!-- TOOLBAR -->
-    <section class="toolbar">
+    <section class="toolbar" id="toolbarSection">
       <div class="filters" id="filters">
         <button class="chip is-active" data-filter="all">All types</button>
         <button class="chip" data-filter="method">Preparation</button>
@@ -206,8 +166,8 @@
   <!-- FOOTER -->
   <footer>
     <p>
-       Replace placeholder videos by adding
-      files under <code>assets/videos/</code> or updating
+      Replace placeholder videos by adding files under
+      <code>assets/videos/</code> or updating
       <code>video.src</code> / <code>video.embed</code> inside
       <code>data/tablets.js</code>.
     </p>
