@@ -2005,19 +2005,73 @@ code {
   }
 }
 /* =========================
-   Custom image icons + fallback
+   Role screen brand + iOS-safe image icons
    ========================= */
+
+.role-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.role-brand-copy {
+  min-width: 0;
+}
+
+.role-brand .role-orb {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.role-card .role-title {
+  margin: 0;
+  font-family: Fraunces, Georgia, "Times New Roman", serif;
+  font-size: clamp(1.65rem, 4.2vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+}
+
+.role-card .role-tagline {
+  margin: 6px 0 0;
+  max-width: none;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.role-card .role-instruction {
+  margin: 18px auto 0;
+  max-width: 60ch;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
 
 .icon-frame {
   position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
   isolation: isolate;
+  flex: 0 0 auto;
 }
 
 .icon-img {
-  position: relative;
-  z-index: 1;
-  display: block;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--icon-size, 24px);
+  height: var(--icon-size, 24px);
+  max-width: calc(100% - 8px);
+  max-height: calc(100% - 8px);
   object-fit: contain;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .icon-frame::after {
@@ -2032,6 +2086,7 @@ code {
   line-height: 1;
   letter-spacing: -0.04em;
   user-select: none;
+  pointer-events: none;
 }
 
 .icon-missing::after {
@@ -2042,19 +2097,16 @@ code {
   display: none;
 }
 
-.brand-mark .icon-img {
-  width: 26px;
-  height: 26px;
+.brand-mark {
+  --icon-size: 26px;
 }
 
-.role-orb .icon-img {
-  width: 40px;
-  height: 40px;
+.role-orb {
+  --icon-size: 40px;
 }
 
-.role-icon .icon-img {
-  width: 24px;
-  height: 24px;
+.role-icon {
+  --icon-size: 24px;
 }
 
 .brand-mark::after {
@@ -2070,19 +2122,34 @@ code {
 }
 
 @media (max-width: 640px) {
-  .brand-mark .icon-img {
-    width: 22px;
-    height: 22px;
+  .role-brand {
+    justify-content: flex-start;
+    gap: 12px;
   }
 
-  .role-orb .icon-img {
-    width: 32px;
-    height: 32px;
+  .role-card .role-title {
+    font-size: 1.45rem;
   }
 
-  .role-icon .icon-img {
-    width: 20px;
-    height: 20px;
+  .role-card .role-tagline {
+    font-size: 0.88rem;
+  }
+
+  .role-card .role-instruction {
+    margin-top: 14px;
+    font-size: 0.9rem;
+  }
+
+  .brand-mark {
+    --icon-size: 22px;
+  }
+
+  .role-orb {
+    --icon-size: 32px;
+  }
+
+  .role-icon {
+    --icon-size: 20px;
   }
 
   .brand-mark::after {
@@ -2096,4 +2163,32 @@ code {
   .role-icon::after {
     font-size: 14px;
   }
+}
+
+@media (max-width: 390px) {
+  .role-card .role-title {
+    font-size: 1.32rem;
+  }
+
+  .role-card .role-tagline {
+    font-size: 0.84rem;
+  }
+
+  .role-orb {
+    --icon-size: 30px;
+  }
+
+  .role-icon {
+    --icon-size: 18px;
+  }
+}
+.icon-img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--icon-size, 24px);
+  height: var(--icon-size, 24px);
+  max-width: calc(100% - 8px);
+  max-height: calc(100% - 8px);
+  object-fit: contain;
 }
